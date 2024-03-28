@@ -8,6 +8,8 @@
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/l2cap.h>
 
+int total = 0;
+
 int bt_send(int client, int size) {
     char buf[600];
 
@@ -20,7 +22,11 @@ int bt_send(int client, int size) {
             perror("write");
             abort();
         }
+
+        total += written;
         size -= written;
+
+        printf("sent %d bytes, total %d bytes\n", written, total);
     }
 }
 
@@ -70,19 +76,14 @@ int main(int argc, char **argv)
 
     // write data to the client
     int n = 1;
-    int total = 0;
     for (int p=0; p <= 5; p++, n *= 10) {
-        printf("sending %d bytes\n", n);
         bt_send(client, n);
-        total += n;
     }
 
-    printf("done\n");
+    printf("sleeping\n");
     sleep(10);
 
-    printf("sending 1 byte\n");
     bt_send(client, 1);
-    total++;
     sleep(1);
 
     printf("Sent total of %d bytes\n", total);

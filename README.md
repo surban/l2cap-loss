@@ -19,14 +19,25 @@ On machine B run `l2cap-client <addr>` where `<addr>` is the Bluetooth address o
 
     Ready
     accepted connection from A8:7E:EA:35:30:F8
-    sending 1 bytes
-    sending 10 bytes
-    sending 100 bytes
-    sending 1000 bytes
-    sending 10000 bytes
-    sending 100000 bytes
-    done
-    sending 1 byte
+    sent 1 bytes, total 1 bytes
+    sent 10 bytes, total 11 bytes
+    sent 100 bytes, total 111 bytes
+    sent 600 bytes, total 711 bytes
+    sent 400 bytes, total 1111 bytes
+    sent 600 bytes, total 1711 bytes
+    sent 600 bytes, total 2311 bytes
+    sent 600 bytes, total 2911 bytes
+    sent 600 bytes, total 3511 bytes
+    sent 600 bytes, total 4111 bytes
+    sent 600 bytes, total 4711 bytes
+    sent 600 bytes, total 5311 bytes
+    sent 600 bytes, total 5911 bytes
+    [...]
+    sent 600 bytes, total 110111 bytes
+    sent 600 bytes, total 110711 bytes
+    sent 400 bytes, total 111111 bytes
+    sleeping
+    sent 1 bytes, total 111112 bytes
     Sent total of 111112 bytes
 
 ### Machine B (receiver)
