@@ -34,8 +34,10 @@ int main(int argc, char **argv)
     // bind socket to LE
     loc_addr.l2_family = AF_BLUETOOTH;
     loc_addr.l2_bdaddr = *BDADDR_ANY;
-    loc_addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
+    //loc_addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
     loc_addr.l2_psm = 0;
+
+    loc_addr.l2_bdaddr_type = BDADDR_BREDR;
 
     if (bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr)) == -1) {
         perror("bind");
@@ -44,9 +46,12 @@ int main(int argc, char **argv)
 
     // set the connection parameters (who to connect to)
     addr.l2_family = AF_BLUETOOTH;
-    addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
-    addr.l2_psm = htobs(130);
+    //addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
+    //addr.l2_psm = htobs(130);
     str2ba( dest, &addr.l2_bdaddr );
+
+    addr.l2_bdaddr_type = BDADDR_BREDR;
+    addr.l2_psm = htobs(0x1001);
 
     // connect to server
     status = connect(s, (struct sockaddr *)&addr, sizeof(addr));
@@ -70,7 +75,7 @@ int main(int argc, char **argv)
         if (i == 3) {
             printf("Sleeping purposfully\n");
             // Comment this out to make it work correctly.
-            sleep(5);
+            sleep(10);
         }
     }
 

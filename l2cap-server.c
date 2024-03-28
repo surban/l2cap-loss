@@ -48,8 +48,11 @@ int main(int argc, char **argv)
     // bluetooth adapter
     loc_addr.l2_family = AF_BLUETOOTH;
     loc_addr.l2_bdaddr = *BDADDR_ANY;
-    loc_addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
-    loc_addr.l2_psm = htobs(130);
+    //loc_addr.l2_bdaddr_type = BDADDR_LE_PUBLIC;
+    //loc_addr.l2_psm = htobs(130);
+
+    loc_addr.l2_bdaddr_type = BDADDR_BREDR;
+    loc_addr.l2_psm = htobs(0x1001);
 
     if (bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr)) == -1) {
         perror("bind");
